@@ -23,7 +23,7 @@ var replenished = false;
 
 function setup() {
     //Create a canvas inside of <div id="canvas-holder">
-    var canv = createCanvas(400, 300);
+    var canv = createCanvas(1000, 300);
     canv.parent("canvas-holder");
     
     //Drawing parameters
