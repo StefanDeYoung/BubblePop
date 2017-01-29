@@ -17,7 +17,7 @@ var scoreDisplay;
 var score = 0;
 var fps = 60;
 var time = 0;
-var roundLength = 20;
+var roundLength = 30;
 var gameOver = false;
 var replenished = false;
 
