@@ -32,7 +32,8 @@ function setup() {
 
     //Create Objects
     for(var i=0; i < startNBubbles; i++){
-      bubbles[i] = new Bubble();
+      //bubbles[i] = new Bubble(random(width), random(height));
+      bubbles[i] = new Bubble(60*i, 60);
     }
 }
 
@@ -51,7 +52,7 @@ function draw() {
             }
         }
 
-        replenishBubbles();
+        //replenishBubbles();
 
         time = time + 1/fps;
         if (roundLength - round(time) <= 0){gameOver = true;}
@@ -66,7 +67,7 @@ function replenishBubbles(){
     var addFreq = roundLength/10*fps;
 
     if (round(time)*fps%round(addFreq) == 0 && !replenished){
-            bubbles.push(new Bubble);
+            bubbles.push(new Bubble(random(width), random(height)));
     }
 }
 

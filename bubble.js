@@ -1,8 +1,8 @@
 function Bubble(x,y){
 //Constructor functions are capitalised
 
-  this.pos = createVector(random(width), random(height));
-  this.vel = createVector(random(-2,2), random(-2,2));
+  this.pos = createVector(x,y);
+  this.vel = createVector();
   this.acc = createVector();
 
   this.radius = height/10;
@@ -37,27 +37,39 @@ Bubble.prototype.move = function(style){
 
   switch(style){
       case "jitter":
-          this.pos.x += random(-1,1);
-          this.pos.y += random(-1,1);
+          var jitter = 100;
+          this.vel = (random(-1*jitter, jitter), random(-1*jitter, jitter));
           break;
 
       case "bounce":
           if (this.pos.x >= width || this.pos.x <= 0){
-              this.vel.x = this.vel.x*-1;}
+              this.vel.x = this.vel.x*-1;
+          }
           if (this.pos.y >= height || this.pos.y <= 0){
-              this.vel.y = this.vel.y*-1;}
-
-          this.pos.add(this.vel);
+              this.vel.y = this.vel.y*-1;
+          }
           break;
+
+      case "snake":
+        if (this.count == 0){
+          this.vel.set(5, 0);
+        }
+
+        if (this.pos.x >= width || this.pos.x <=0){
+          this.vel.mult(-1);
+          this.pos.y += this.radius;
+        }
       default:
           break; //no movement
   }
+
+  this.pos.add(this.vel);
 }
 
 Bubble.prototype.update = function(){
   //handles animation and change in state
 
-  this.move("bounce");
+  this.move("snake");
 
   //objects redden as they live
   this.life--;
